@@ -1,16 +1,15 @@
 package com.students;
-import db.DbConnection;
-import models.Student;
-import java.util.ArrayList;
+import javax.swing.JFrame;
+import ui.Dashboard;
+import ui.Login;
 
 public class Main {
-    
+    public static JFrame login = new Login();
+    public static JFrame dashboard = new Dashboard();
+
     public static void main(String[] args) {
-        DbConnection db = new DbConnection();
-        ArrayList<Student> students = db.getStudents();
-        for (Student student : students) {
-            System.out.println(student);
-            System.out.println("===================================");
-        }
+        login.setLocationRelativeTo((null));
+        dashboard.setLocationRelativeTo((null));
+        login.setVisible(true);
     }
 }

@@ -2,19 +2,19 @@ package models;
 
 public class Student {
     private int id;
-    private String nom;
-    private String prenom;
-    private String filiere;
+    private String lastName;
+    private String firstName;
+    private String major;
     private int age;
-    private double moyenne;
+    private double average;
 
-    public Student(int id, String nom, String prenom, String filiere, int age, double moyenne) {
+    public Student(int id, String lastName, String firstName, String major, int age, double average) {
         this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.filiere = filiere;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.major = major;
         this.age = age;
-        this.moyenne = moyenne;
+        this.average = average;
     }
 
     public int getId() {
@@ -25,28 +25,28 @@ public class Student {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getFiliere() {
-        return filiere;
+    public String getMajor() {
+        return major;
     }
 
-    public void setFiliere(String filiere) {
-        this.filiere = filiere;
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public int getAge() {
@@ -57,21 +57,22 @@ public class Student {
         this.age = age;
     }
 
-    public double getMoyenne() {
-        return moyenne;
+    public double getAverage() {
+        return average;
     }
 
-    public void setMoyenne(double moyenne) {
-        this.moyenne = moyenne;
+    public void setAverage(double average) {
+        this.average = average;
     }
 
+    @Override
     public String toString() {
         String st = "-ID: " + this.id + "\n";
-        st += "-Nom: " + this.nom + "\n";
-        st += "-Prenom: " + this.prenom + "\n";
-        st += "-Filiere: " + this.filiere + "\n";
+        st += "-First name: " + this.firstName + "\n";
+        st += "-Last name: " + this.lastName + "\n";
+        st += "-Major: " + this.major + "\n";
         st += "-Age: " + this.age + "\n";
-        st += "-Moyenne: " + this.moyenne + "\n";
+        st += "-Average: " + this.average + "\n";
         return st;
     }
 
