@@ -25,6 +25,8 @@ public class DbConnection {
         }
     }
 
+
+    // students operations
     public ArrayList<Student> getStudents() {
         ArrayList<Student> students = new ArrayList<>();
 
@@ -34,10 +36,16 @@ public class DbConnection {
                 int id = result.getInt("id");
                 String lastName = result.getString("lastName");
                 String firstName = result.getString("firstName");
-                String major = result.getString("major");
+                int major_id = result.getInt("major_id");
                 int age = result.getInt("age");
                 double average = result.getDouble("average");
-                Student student = new Student(id, lastName, firstName, major, age, average);
+                String gender = result.getString("gender");
+                String email = result.getString("email");
+                String address = result.getString("address");
+                String phone = result.getString("phone");
+                Date birthday = result.getDate("birthday");
+                Date enrollmentDate = result.getDate("enrollmentDate");
+                Student student = new Student(id, lastName, firstName, major_id, age, average, gender, email, address, phone, birthday, enrollmentDate);
                 students.add(student);
             }
         } catch (SQLException e) {
@@ -47,15 +55,20 @@ public class DbConnection {
         return students;
     }
 
-    // students operations
     public void addStudent(Student student) {
         try {
-            PreparedStatement statement = this.conn.prepareStatement("INSERT INTO students (firstName, lastName, major, age, average) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement statement = this.conn.prepareStatement("INSERT INTO students (firstName, lastName, major_id, age, average, gender, email, address, phone, birthday, enrollmentDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, student.getFirstName());
             statement.setString(2, student.getLastName());
-            statement.setString(3, student.getMajor());
+            statement.setInt(3, student.getMajor());
             statement.setInt(4, student.getAge());
             statement.setDouble(5, student.getAverage());
+            statement.setString(6, student.getGender());
+            statement.setString(7, student.getEmail());
+            statement.setString(8, student.getAddress());
+            statement.setString(9, student.getPhone());
+            statement.setDate(10, new java.sql.Date(student.getBirthday().getTime()));
+            statement.setDate(11, new java.sql.Date(student.getEnrollmentDate().getTime()));
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,10 +94,16 @@ public class DbConnection {
             while (result.next()) {
                 String lastName = result.getString("lastName");
                 String firstName = result.getString("firstName");
-                String major = result.getString("major");
+                int major_id = result.getInt("major_id");
                 int age = result.getInt("age");
                 double average = result.getDouble("average");
-                student = new Student(id, lastName, firstName, major, age, average);
+                String gender = result.getString("gender");
+                String email = result.getString("email");
+                String address = result.getString("address");
+                String phone = result.getString("phone");
+                Date birthday = result.getDate("birthday");
+                Date enrollmentDate = result.getDate("enrollmentDate");
+                student = new Student(id, lastName, firstName, major_id, age, average, gender, email, address, phone, birthday, enrollmentDate);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,6 +111,8 @@ public class DbConnection {
         }
         return student;
     }
+
+
 
     // user operations
     public User checkUser(String email, String password) {
